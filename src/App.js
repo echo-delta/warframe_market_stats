@@ -109,7 +109,7 @@ class App extends Component {
 					<h3>Select an item</h3>
 					<Form itemNames={this.state.itemNames} getPriceInfo={this.getPriceInfo}/>
 					<PriceInfo item={this.state.current_item} stats={this.state.current_statistics} orders={this.state.current_orders} changeRank={this.changeRank} />
-					<p>Made by echo_delta for learning purposes. Source and documentation at <a href="https://github.com/echo-delta/warframe-market-stats">https://github.com/echo-delta/warframe-market-stats</a></p>
+					<p>Made by echo_delta for learning purposes. Source and documentation at <a href="https://github.com/echo-delta/warframe-market-stats">https://github.com/echo-delta/warframe-market-stats</a>.</p>
 				</center>
       </div>
     );

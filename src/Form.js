@@ -15,19 +15,11 @@ class Form extends Component {
 		this.setState({
 			itemName: values
 		}, () => {  
-			if (this.state.itemName.value !== undefined) {
+			if (this.state.itemName && this.state.itemName.value !== undefined) {
 				this.props.getPriceInfo(this.state.itemName)
 				this.setState(this.initialState)
 			}
 		})
-	}
-	
-	handleSubmit = e => {
-		e.preventDefault()
-		if (this.state.itemName.value !== undefined) {
-			this.props.getPriceInfo(this.state.itemName)
-			this.setState(this.initialState)
-		}
 	}
 	
 	loadNoDataRenderer = ({props,state,methods}) => (
@@ -44,11 +36,10 @@ class Form extends Component {
 				<Select
 					options={itemNames}	
 					clearOnSelect="True"
-					clearable="True"
 					values={itemName}
 					noDataRenderer={this.loadNoDataRenderer}
 					onChange={(values) => this.handleChange(values[0])} />
-				<input className="checkButton" type="button" value="Check" onClick={this.handleSubmit} />
+				<br />
 				<hr />
 			</form>
 		)
