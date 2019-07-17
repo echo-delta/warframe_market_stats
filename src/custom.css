@@ -127,3 +127,31 @@ td {
 	color: black;
 	text-align: left;
 }
+
+.rankLabel {
+	text-align: center;
+	height: 1%;
+	padding: 0;
+	vertical-align: middle;
+}
+
+.rankLabel h1 {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.rankButton {
+	display: inline-block;
+	font-size: 1em;
+	width: 10%;
+	line-height:300%;
+	text-align: center;
+	height: 2%;
+	margin-left: 1%;
+	margin-right: 1%;
+	padding: 0;
+	color: white;
+	background-color: #737373;
+	border: 0;
+	vertical-align: middle;
+}

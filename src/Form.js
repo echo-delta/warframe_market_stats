@@ -44,7 +44,7 @@ class Form extends Component {
 					values={itemName}
 					noDataRenderer={this.loadNoDataRenderer}
 					onChange={(values) => this.handleChange(values[0])} />
-				<input className="checkButton"  type="button" value="Check" onClick={this.handleSubmit} />
+				<input className="checkButton" type="button" value="Check" onClick={this.handleSubmit} />
 				<hr />
 			</form>
 		)

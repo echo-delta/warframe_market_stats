@@ -29,6 +29,18 @@ class App extends Component {
 			})
 	}
 	
+	changeRank = () => {
+		var item = this.state.current_item
+		if (item.rank === item.max_rank) {
+			item.rank = 0
+		} else {
+			item.rank = item.max_rank
+		}
+		this.setState({
+				current_item: item
+		})
+	}
+	
 	getPriceInfo = itemName => {
 		var item = this.state.items.find(item => {return(item.item_name === itemName.value)})
 		this.setState({
@@ -64,6 +76,30 @@ class App extends Component {
 					current_orders: result.payload.orders
 				})
 			})
+			
+		url = 'https://api.warframe.market/v1/items/' + item.url_name
+		fetch(url, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			}
+		})
+			.then(result => result.json())
+			.then(result => {
+				if (result.payload.item.items_in_set[0].mod_max_rank) {
+					item.max_rank = result.payload.item.items_in_set[0].mod_max_rank
+					item.rank = 0
+					this.setState({
+						current_item:item
+					})
+				} else {
+					item.max_rank = -1
+					item.rank = 0
+					this.setState({
+						current_item:item
+					})
+				}
+			})
 	}
 	
   render() {
@@ -72,7 +108,7 @@ class App extends Component {
 				<center>
 					<h3>Select an item</h3>
 					<Form itemNames={this.state.itemNames} getPriceInfo={this.getPriceInfo}/>
-					<PriceInfo item={this.state.current_item} stats={this.state.current_statistics} orders={this.state.current_orders} />
+					<PriceInfo item={this.state.current_item} stats={this.state.current_statistics} orders={this.state.current_orders} changeRank={this.changeRank} />
 				</center>
       </div>
     );
