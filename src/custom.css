@@ -1,0 +1,129 @@
+html {
+	height: 80%;
+}
+
+body {
+	background-color: #3b3b3b; 
+	color: white;
+	font-family: Helvetica;
+	height: 90%;
+}
+
+#root {
+	height: 90%;
+}
+
+.App {
+	margin: 5%;
+	height: 100%;
+}
+
+center {
+	height: 100%;
+}
+
+Form {
+	height: 30%;
+	padding: 0;
+}
+
+.checkButton{
+	font-size: 1.5em;
+	padding: 2%;
+	width: 30%;
+	line-height:8%;
+	text-align: center;
+	height: 8%;
+	margin: 2%;
+	color: white;
+	background-color: #737373;
+	border: 0;
+}
+
+.checkButton:hover {
+	background-color: #939393;
+}
+
+.marketButton {
+	font-size: 1.5em;
+	padding: 2%;
+	width: 100%;
+	line-height:300%;
+	text-align: center;
+	height: 8%;
+	margin: 2%;
+	margin-bottom: 15%;
+	color: white;
+	background-color: #737373;
+	border: 0;
+}
+
+.marketButton:hover {
+	background-color: #939393;
+}
+
+hr {
+	background-color: white;
+	color: white;
+	padding: 0;
+	margin: 0;
+}
+
+.prices{
+	text-align: center;
+}
+
+.orderPrice {
+	display: inline-block;
+	margin-top: 2%;
+	margin-left: 5%;
+	margin-right: 5%;
+	text-align: left;
+}
+
+.averagePrice {
+	display: inline-block;
+	margin-top: 2%;
+	margin-left: 5%;
+	margin-right: 5%;
+	text-align: left;
+}
+
+table {
+	padding: 0;
+	margin: 0;
+	border-spacing: 0 0px;
+	table-layout: fixed;
+	width: 100%;
+}
+
+tr {
+	width: 100%;
+}
+
+td {
+	text-align: center;
+	padding-right: 2%;
+	padding-left: 2%;
+	width: 35%;
+}
+
+.react-dropdown.select {
+	width: 80%;
+}
+
+.react-dropdown-select-input{
+	color:white;
+	text-align: center;
+	width: 100%;
+}
+
+.react-dropdown-select-item{
+	background-color: #737373;
+	text-align: left;
+}
+
+.react-dropdown-select-item:hover{
+	color: black;
+	text-align: left;
+}

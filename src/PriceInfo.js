@@ -14,7 +14,7 @@ const ItemName = props => {
 const AvgPrice = props => {
 	if (props.stats.length > 0) {
 		return (
-			<h3>Average Price: {props.stats[props.stats.length-1].avg_price}</h3>
+			<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{props.stats[props.stats.length-1].avg_price}</h1></div>
 		)
 	} else {
 		return(<p>Loading stats...</p>)
@@ -28,7 +28,7 @@ const OrderPrice = props => {
 							.map(order => order.platinum)
 		var buy_max =  Math.max.apply(Math, buy_prices)
 		if (!isFinite(buy_max)) {
-			buy_max = 'No online buyer found.'
+			buy_max = '-'
 		}
 		
 		var sell_prices = props.orders
@@ -36,13 +36,13 @@ const OrderPrice = props => {
 							.map(order => order.platinum)
 		var sell_min =  Math.min.apply(Math, sell_prices)
 		if (!isFinite(sell_min)) {
-			sell_min = 'No online buyer found.'
+			sell_min = '-'
 		}
 		
 		return(
 			<div className="prices">
-				<h3>Max buyer online: {buy_max}</h3>
-				<h3>Min seller online: {sell_min}</h3>
+				<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{buy_max}</h1></div>
+				<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{sell_min}</h1></div>
 			</div>
 		)
 	} else {
@@ -57,6 +57,13 @@ const StatChart = props => {
 			{ type: 'datetime', label: 'time' },
 			{ type: 'number', label: 'price' }
 		])
+		var options = {
+			backgroundColor: '#3b3b3b',
+			colors: ['#94bdff'],
+			hAxis:{textStyle:{color:'white'}},
+			vAxis:{textStyle:{color:'white'}},
+			legend:{textStyle:{color:'white'}}
+		}
 		return(
 			<Chart
 				width="100%"
@@ -67,6 +74,8 @@ const StatChart = props => {
 				options={{
 					intervals: { style: 'sticks' },
 				}}
+				
+				options={options}
 			/>
 		)
 	} else {
@@ -81,9 +90,15 @@ class PriceInfo extends Component {
 			return(
 				<div className="stats" >
 					<ItemName item={item} />
-					<AvgPrice stats={stats} />
-					<OrderPrice orders={orders} />
-					<input type="button" value="Check the market" onClick={()=> window.open("https://warframe.market/items/" + item.url_name, "_blank")} />
+					<table>
+					<tbody>
+							<tr>
+								<td><AvgPrice stats={stats} /></td>
+								<td><OrderPrice orders={orders} /></td>
+								<td><input className="marketButton" type="button" value="Check the market" onClick={()=> window.open("https://warframe.market/items/" + item.url_name, "_blank")} /></td>
+							</tr>
+						</tbody>
+					</table>
 					<StatChart stats={stats} />
 				</div>
 			)

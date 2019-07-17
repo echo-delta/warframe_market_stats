@@ -69,9 +69,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Select an item</h1>
-				<Form itemNames={this.state.itemNames} getPriceInfo={this.getPriceInfo}/>
-				<PriceInfo item={this.state.current_item} stats={this.state.current_statistics} orders={this.state.current_orders} />
+				<center>
+					<h3>Select an item</h3>
+					<Form itemNames={this.state.itemNames} getPriceInfo={this.getPriceInfo}/>
+					<PriceInfo item={this.state.current_item} stats={this.state.current_statistics} orders={this.state.current_orders} />
+				</center>
       </div>
     );
   }
