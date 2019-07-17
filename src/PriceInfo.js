@@ -111,7 +111,7 @@ const StatChart = props => {
 		return(
 			<Chart
 				width="100%"
-				height="30%"
+				height="20%"
 				chartType="LineChart"
 				loader={<div>Loading Chart</div>}
 				data={data}

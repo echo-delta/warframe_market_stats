@@ -12,7 +12,6 @@ class Form extends Component {
 	}
 	
 	handleChange = values => {
-		console.log(values)
 		this.setState({
 			itemName: values
 		}, () => {  

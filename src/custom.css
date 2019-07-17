@@ -14,7 +14,7 @@ body {
 }
 
 .App {
-	margin: 5%;
+	margin: 2%;
 	height: 100%;
 }
 
@@ -23,7 +23,7 @@ center {
 }
 
 Form {
-	height: 30%;
+	height: 35%;
 	padding: 0;
 }
 
@@ -165,4 +165,17 @@ td {
 
 .rankButton:hover {
 	background-color: #939393;
+}
+
+p {
+	font-size: 0.8em;
+	margin-top: 2%;
+}
+
+a {
+	color: #94bdff;
+}
+
+a:visited {
+	color: #94bdff;
 }
