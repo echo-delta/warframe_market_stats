@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Chart from 'react-google-charts';
 
 const ItemName = props => {
 	if (props.item.item_name) {
@@ -49,6 +50,30 @@ const OrderPrice = props => {
 	}
 }
 
+const StatChart = props => {
+	if (props.stats.length > 0) {
+		var data = props.stats.map(stat => [new Date(stat.datetime), stat.avg_price])
+		data.unshift([
+			{ type: 'datetime', label: 'time' },
+			{ type: 'number', label: 'price' }
+		])
+		return(
+			<Chart
+				width="100%"
+				height="30%"
+				chartType="LineChart"
+				loader={<div>Loading Chart</div>}
+				data={data}
+				options={{
+					intervals: { style: 'sticks' },
+				}}
+			/>
+		)
+	} else {
+		return(<p>Loading stats...</p>)
+	}
+}
+
 class PriceInfo extends Component {
 	render() {
 		const {item, stats, orders} = this.props
@@ -58,6 +83,8 @@ class PriceInfo extends Component {
 					<ItemName item={item} />
 					<AvgPrice stats={stats} />
 					<OrderPrice orders={orders} />
+					<input type="button" value="Check the market" onClick={()=> window.open("https://warframe.market/items/" + item.url_name, "_blank")} />
+					<StatChart stats={stats} />
 				</div>
 			)
 		} else {
