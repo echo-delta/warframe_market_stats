@@ -35,7 +35,8 @@ class App extends Component {
 			current_item: item,
 			current_statistics:[],
 			current_orders:[]
-		})	
+		})
+		
 		var url = 'https://api.warframe.market/v1/items/' + item.url_name + '/statistics'
 		fetch(url, {
 			headers: {
@@ -68,7 +69,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Hello, World</h1>
+        <h1>Select an item</h1>
 				<Form itemNames={this.state.itemNames} getPriceInfo={this.getPriceInfo}/>
 				<PriceInfo item={this.state.current_item} stats={this.state.current_statistics} orders={this.state.current_orders} />
       </div>

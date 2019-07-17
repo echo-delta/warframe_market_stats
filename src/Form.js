@@ -19,14 +19,21 @@ class Form extends Component {
 	
 	handleSubmit = e => {
 		e.preventDefault()
-		this.props.getPriceInfo(this.state.itemName)
-		this.setState(this.initialState)
+		if (this.state.itemName.value !== undefined) {
+			this.props.getPriceInfo(this.state.itemName)
+			this.setState(this.initialState)
+		}
 	}
+	
+	loadNoDataRenderer = ({props,state,methods}) => (
+		<center>Loading items...</center>
+	)
 	
 	render() {
 		const itemName = [this.state.itemName]
 		
 		const itemNames = this.props.itemNames.map(name => {return({'label': name, 'value': name})})
+		
 		return(
 			<form onSubmit={e => this.handleSubmit(e)}>
 				<Select
@@ -34,6 +41,7 @@ class Form extends Component {
 					clearOnSelect="True"
 					clearable="True"
 					values={itemName}
+					noDataRenderer={this.loadNoDataRenderer}
 					onChange={(values) => this.handleChange(values[0])} />
 				<input type="button" value="Check" onClick={this.handleSubmit} />
 			</form>
