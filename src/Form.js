@@ -6,30 +6,36 @@ class Form extends Component {
 	constructor(props) {
 		super(props)
 		this.initialState = {
-			item: ''
+			itemName: {}
 		}
 		this.state = this.initialState
 	}
 	
-	handleChange = event => {
-		const {name, value} = event.target
+	handleChange = values => {
 		this.setState({
-			[name]: value
+			itemName: values
 		})
 	}
 	
+	handleSubmit = e => {
+		e.preventDefault()
+		this.props.getPriceInfo(this.state.itemName)
+		this.setState(this.initialState)
+	}
+	
 	render() {
-		const {item} = this.state
-		//const {itemNames} = this.props
-		//console.log(itemNames)
+		const itemName = [this.state.itemName]
+		
 		const itemNames = this.props.itemNames.map(name => {return({'label': name, 'value': name})})
-		console.log(itemNames)
 		return(
-			<form>
-			<label>Item</label>
-			<Select 
-				options={itemNames} />
-			<input type="button" value="Check" />
+			<form onSubmit={e => this.handleSubmit(e)}>
+				<Select
+					options={itemNames}	
+					clearOnSelect="True"
+					clearable="True"
+					values={itemName}
+					onChange={(values) => this.handleChange(values[0])} />
+				<input type="button" value="Check" onClick={this.handleSubmit} />
 			</form>
 		)
 	}
