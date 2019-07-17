@@ -32,7 +32,9 @@ class App extends Component {
 	getPriceInfo = itemName => {
 		var item = this.state.items.find(item => {return(item.item_name === itemName.value)})
 		this.setState({
-			current_item: item
+			current_item: item,
+			current_statistics:[],
+			current_orders:[]
 		})	
 		var url = 'https://api.warframe.market/v1/items/' + item.url_name + '/statistics'
 		fetch(url, {

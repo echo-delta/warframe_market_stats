@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 
 const ItemName = props => {
-	console.log(props.item)
-	if (props.item) {
+	if (props.item.item_name) {
 		return (
 			<h1>{props.item.item_name}</h1>
 		)
 	} else {
-		return (null)
+		return (<h5>Select an item.</h5>)
 	}
 }
 
@@ -21,14 +20,40 @@ const AvgPrice = props => {
 	}
 }
 
+const OrderPrice = props => {
+	if (props.orders.length > 0) {		
+		/*var buy_max = Math.max.apply(Math, props.orders
+							.filter(order => {order.user.status === "online" && order.order_type === "buy"})
+							.map(order => order.platinum))*/
+		var buy_prices = props.orders
+							.filter(order => (order.user.status === "ingame" && order.order_type === "buy"))
+							.map(order => order.platinum)
+		var buy_max =  Math.max.apply(Math, buy_prices)
+		
+		var sell_prices = props.orders
+							.filter(order => (order.user.status === "ingame" && order.order_type === "sell"))
+							.map(order => order.platinum)
+		var sell_min =  Math.min.apply(Math, sell_prices)
+		
+		return(
+			<div className="prices">
+				<h3>Max buyer online: {buy_max}</h3>
+				<h3>Min seller online: {sell_min}</h3>
+			</div>
+		)
+	} else {
+		return(<p>No orders available.</p>)
+	}
+}
+
 class PriceInfo extends Component {
 	render() {
 		const {item, stats, orders} = this.props
-		console.log(this.props)
 		return(
 			<div className="stats" >
 				<ItemName item={item} />
 				<AvgPrice stats={stats} />
+				<OrderPrice orders={orders} />
 			</div>
 		)
 	}
