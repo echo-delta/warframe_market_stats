@@ -27,23 +27,6 @@ Form {
 	padding: 0;
 }
 
-.checkButton{
-	font-size: 1.5em;
-	padding: 2%;
-	width: 30%;
-	line-height:8%;
-	text-align: center;
-	height: 8%;
-	margin: 2%;
-	color: white;
-	background-color: #737373;
-	border: 0;
-}
-
-.checkButton:hover {
-	background-color: #939393;
-}
-
 .marketButton {
 	font-size: 1.5em;
 	padding: 2%;
@@ -131,6 +114,11 @@ td {
 }
 
 .react-dropdown-select-item:hover{
+	color: black;
+	text-align: left;
+}
+
+.react-dropdown-select-item-active{
 	color: black;
 	text-align: left;
 }
