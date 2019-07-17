@@ -112,6 +112,13 @@ td {
 	width: 80%;
 }
 
+.react-dropdown-select-dropdown center{
+	background-color: #737373;
+	color:white;
+	text-align: center;
+	width: 100%;
+}
+
 .react-dropdown-select-input{
 	color:white;
 	text-align: center;
@@ -154,4 +161,8 @@ td {
 	background-color: #737373;
 	border: 0;
 	vertical-align: middle;
+}
+
+.rankButton:hover {
+	background-color: #939393;
 }

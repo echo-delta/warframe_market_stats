@@ -37,7 +37,6 @@ class Form extends Component {
 		return(
 			<form onSubmit={e => this.handleSubmit(e)}>
 				<Select
-					style={{color: "white"}}
 					options={itemNames}	
 					clearOnSelect="True"
 					clearable="True"
