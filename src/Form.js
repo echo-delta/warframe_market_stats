@@ -12,8 +12,14 @@ class Form extends Component {
 	}
 	
 	handleChange = values => {
+		console.log(values)
 		this.setState({
 			itemName: values
+		}, () => {  
+			if (this.state.itemName.value !== undefined) {
+				this.props.getPriceInfo(this.state.itemName)
+				this.setState(this.initialState)
+			}
 		})
 	}
 	
