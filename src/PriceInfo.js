@@ -23,9 +23,10 @@ const ItemName = props => {
 
 const AvgPrice = props => {
 	if (props.stats.length > 0 && props.item) {
-		if (props.item.max_rank && props.item.max_rank > -1 && props.item.rank > 0) {
+		if (props.item.max_rank && props.item.max_rank > -1) {
+			var rank_stat = props.stats.filter(stat => (stat.mod_rank === props.item.rank))
 			return (
-				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{props.stats[props.stats.length-2].avg_price}</h1></div>
+				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{rank_stat[rank_stat.length-1].avg_price}</h1></div>
 			)
 		} else {
 			return (
