@@ -1,5 +1,5 @@
 # Warframe Market Stats
-Simple web app to display statistics for warframe item prices.
+Simple web app to display statistics for warframe item prices. Pay a visit at [https://echo-delta.github.io/warframe-market-stats](https://echo-delta.github.io/warframe-market-stats) to try it!
 
 ## Description
 Warframe Market is a great app that allows users to place their orders for in-game items. Not only that, users also use this app to determine item prices based on its statistics. However, accessing the statistics page through the app requires a few clicks and loads away. This interface is made to include all the information I need to determine item prices in one page.
