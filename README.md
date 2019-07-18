@@ -19,4 +19,4 @@ Select an item to view its stats from the dropdown available on the page. Upon s
 I find all the prices listed enough to determine a price of my own, and the chart is handy to decide whether to sell/buy or wait for future increase/decrease in price.
 
 ## Acknowledgements
-Big thanks to Digital Extremes for the great game, also to Warframe Market team to provide such a useful public API. The public API is available at [this link](https://docs.google.com/document/d/1121cjBNN4BeZdMBGil6Qbuqse-sWpEXPpitQH5fb_Fo/edit#heading=h.irwashnbboeo).
+Big thanks to Digital Extremes for the great game, also to Warframe Market team to provide such a useful public API. The public API is available at [this link](https://docs.google.com/document/d/1121cjBNN4BeZdMBGil6Qbuqse-sWpEXPpitQH5fb_Fo/edit#heading=h.irwashnbboeo). This project is made for learning purposes, and all information used belong to their respective owners.
