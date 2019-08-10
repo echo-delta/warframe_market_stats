@@ -6,37 +6,36 @@ class Form extends Component {
 	constructor(props) {
 		super(props)
 		this.initialState = {
-			itemName: {}
+			item: {}
 		}
 		this.state = this.initialState
 	}
 	
 	handleChange = values => {
 		this.setState({
-			itemName: values
+			item: values
 		}, () => {  
-			if (this.state.itemName && this.state.itemName.value !== undefined) {
-				this.props.getPriceInfo(this.state.itemName)
+			if (this.state.item && this.state.item.value !== undefined) {
+				this.props.getPriceInfo(this.state.item)
 				this.setState(this.initialState)
 			}
 		})
 	}
 	
-	loadNoDataRenderer = ({props,state,methods}) => (
-		<center>Loading items...</center>
+	loadNoDataRenderer = () => (
+		<center>{this.props.loadState}</center>
 	)
 	
 	render() {
-		const itemName = [this.state.itemName]
-		
-		const itemNames = this.props.itemNames.map(name => {return({'label': name, 'value': name})})
+		const item = [this.state.item]
+		const items = this.props.items.map(item => {return({'label': item.item_name, 'value': item.url_name})})
 		
 		return(
 			<form onSubmit={e => this.handleSubmit(e)}>
 				<Select
-					options={itemNames}	
+					options={items}	
 					clearOnSelect="True"
-					values={itemName}
+					values={item}
 					noDataRenderer={this.loadNoDataRenderer}
 					onChange={(values) => this.handleChange(values[0])} />
 				<br />

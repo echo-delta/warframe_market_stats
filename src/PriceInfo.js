@@ -3,7 +3,7 @@ import Chart from 'react-google-charts';
 
 const ItemName = props => {
 	if (props.item.item_name) {
-		if (props.item.max_rank && props.item.max_rank > -1) {
+		if (props.item.mod_max_rank > -1) {
 			var buttonVal = 'Rank ' + props.item.rank
 			return (
 				<div className="rankLabel">
@@ -22,15 +22,20 @@ const ItemName = props => {
 }
 
 const AvgPrice = props => {
-	if (props.stats.length > 0 && props.item) {
-		if (props.item.max_rank && props.item.max_rank > -1) {
-			var rank_stat = props.stats.filter(stat => (stat.mod_rank === props.item.rank))
+	if (props.item.stats) {
+		if (props.item.mod_max_rank > -1) {
+			var rank_stat
+			if (props.item.rank === 0) {
+				rank_stat = props.item.stats.rank_0
+			} else {
+				rank_stat = props.item.stats.max_rank
+			}
 			return (
 				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{rank_stat[rank_stat.length-1].avg_price}</h1></div>
 			)
 		} else {
 			return (
-				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{props.stats[props.stats.length-1].avg_price}</h1></div>
+				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{props.item.stats[props.item.stats.length-1].avg_price}</h1></div>
 			)
 		}
 	} else {
@@ -39,62 +44,48 @@ const AvgPrice = props => {
 }
 
 const OrderPrice = props => {
-	if (props.orders.length > 0 && props.item) {
-		var buy_prices, buy_max, sell_prices, sell_min
-		if (props.item.max_rank && props.item.max_rank > -1) {
-			buy_prices = props.orders
-								.filter(order => (order.user.status === "ingame" && order.order_type === "buy" && order.mod_rank === props.item.rank))
-								.map(order => order.platinum)
-			buy_max =  Math.max.apply(Math, buy_prices)
-			if (!isFinite(buy_max)) {
-				buy_max = '-'
-			}
-			
-			sell_prices = props.orders
-								.filter(order => (order.user.status === "ingame" && order.order_type === "sell" && order.mod_rank === props.item.rank))
-								.map(order => order.platinum)
-			sell_min =  Math.min.apply(Math, sell_prices)
-			if (!isFinite(sell_min)) {
-				sell_min = '-'
+	if (props.item.orders) {
+		if (props.item.mod_max_rank > -1) {
+			if (props.item.rank === 0) {
+				return(
+					<div className="prices">
+						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.rank_0.max_buy}</h1></div>
+						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.rank_0.min_sell}</h1></div>
+					</div>
+				) 
+			} else {
+				return(
+					<div className="prices">
+						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.max_rank.max_buy}</h1></div>
+						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.max_rank.min_sell}</h1></div>
+					</div>
+				)
 			}
 		} else {
-			buy_prices = props.orders
-								.filter(order => (order.user.status === "ingame" && order.order_type === "buy"))
-								.map(order => order.platinum)
-			buy_max =  Math.max.apply(Math, buy_prices)
-			if (!isFinite(buy_max)) {
-				buy_max = '-'
-			}
-			
-			sell_prices = props.orders
-								.filter(order => (order.user.status === "ingame" && order.order_type === "sell"))
-								.map(order => order.platinum)
-			sell_min =  Math.min.apply(Math, sell_prices)
-			if (!isFinite(sell_min)) {
-				sell_min = '-'
-			}
+				return(
+					<div className="prices">
+						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.max_buy}</h1></div>
+						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.min_sell}</h1></div>
+					</div>
+				)
 		}
 		
-		return(
-			<div className="prices">
-				<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{buy_max}</h1></div>
-				<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{sell_min}</h1></div>
-			</div>
-		)
 	} else {
 		return(<p>Loading orders...</p>)
 	}
 }
 
 const StatChart = props => {
-	if (props.stats.length > 0 && props.item) {
+	if (props.item.stats) {
 		var data
-		if (props.item.max_rank && props.item.max_rank > -1) {
-			data = props.stats
-								.filter(stat => (stat.mod_rank === props.item.rank))
-								.map(stat => [new Date(stat.datetime), stat.avg_price])
+		if (props.item.mod_max_rank > -1) {
+			if (props.item.rank === 0) {
+				data = props.item.stats.rank_0.map(stat => [new Date(stat.datetime), stat.avg_price])
+			} else {
+				data = props.item.stats.max_rank.map(stat => [new Date(stat.datetime), stat.avg_price])
+			}
 		} else {
-			data = props.stats.map(stat => [new Date(stat.datetime), stat.avg_price])
+			data = props.item.stats.map(stat => [new Date(stat.datetime), stat.avg_price])
 		}
 		
 		data.unshift([
@@ -126,7 +117,7 @@ const StatChart = props => {
 
 class PriceInfo extends Component {
 	render() {
-		const {item, stats, orders, changeRank} = this.props
+		const {item, changeRank} = this.props
 		if (item.item_name !== undefined) {
 			return(
 				<div className="stats" >
@@ -134,13 +125,13 @@ class PriceInfo extends Component {
 					<table>
 					<tbody>
 							<tr>
-								<td><AvgPrice stats={stats} item={item} /></td>
-								<td><OrderPrice orders={orders} item={item} /></td>
+								<td><AvgPrice item={item} /></td>
+								<td><OrderPrice item={item} /></td>
 								<td><input className="marketButton" type="button" value="Check the market" onClick={()=> window.open("https://warframe.market/items/" + item.url_name, "_blank")} /></td>
 							</tr>
 						</tbody>
 					</table>
-					<StatChart stats={stats} item={item} />
+					<StatChart item={item} />
 				</div>
 			)
 		} else {

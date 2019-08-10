@@ -6,50 +6,55 @@ class App extends Component {
 	
 	state = {
 		items: [],
-		itemNames: [],
 		current_item:{},
-		current_statistics:[],
-		current_orders:[]
+		loadState: "Loading items ..."
 	}
 	
 	componentDidMount() {
-		const url = 'https://api.warframe.market/v1/items'
+		const url = 'https://wf-marketstats.herokuapp.com/items'
 		fetch(url, {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json'
 			}
 		})
+			.then(result => {
+				console.log(result)
+				if (!result.ok) {
+					throw Error(result.statusText)
+				}
+			})
 			.then(result => result.json())
 			.then(result => {
 				this.setState({
-					items:result.payload.items,
-					itemNames: result.payload.items.map(item => item.item_name)
+					items:result
+				})
+			})
+			.catch(error => {
+				console.log(error)
+				this.setState({
+					loadState: "Load Failed."
 				})
 			})
 	}
 	
 	changeRank = () => {
 		var item = this.state.current_item
-		if (item.rank === item.max_rank) {
+		if (item.rank === item.mod_max_rank) {
 			item.rank = 0
 		} else {
-			item.rank = item.max_rank
+			item.rank = item.mod_max_rank
 		}
 		this.setState({
 				current_item: item
 		})
 	}
 	
-	getPriceInfo = itemName => {
-		var item = this.state.items.find(item => {return(item.item_name === itemName.value)})
+	getPriceInfo = item => {
 		this.setState({
-			current_item: item,
-			current_statistics:[],
-			current_orders:[]
+			current_item: {item_name : item.label}
 		})
-		
-		var url = 'https://api.warframe.market/v1/items/' + item.url_name + '/statistics'
+		var url = 'https://wf-marketstats.herokuapp.com/items' + item.value
 		fetch(url, {
 			headers: {
 				'Content-Type': 'application/json',
@@ -58,47 +63,11 @@ class App extends Component {
 		})
 			.then(result => result.json())
 			.then(result => {
+				result.item_name = item.label
+				result.rank = 0
 				this.setState({
-					current_statistics: result.payload.statistics_closed["90days"]
+					current_item: result
 				})
-			})
-			
-		url = 'https://api.warframe.market/v1/items/' + item.url_name + '/orders'
-		fetch(url, {
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			}
-		})
-			.then(result => result.json())
-			.then(result => {
-				this.setState({
-					current_orders: result.payload.orders
-				})
-			})
-			
-		url = 'https://api.warframe.market/v1/items/' + item.url_name
-		fetch(url, {
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json'
-			}
-		})
-			.then(result => result.json())
-			.then(result => {
-				if (result.payload.item.items_in_set[0].mod_max_rank) {
-					item.max_rank = result.payload.item.items_in_set[0].mod_max_rank
-					item.rank = 0
-					this.setState({
-						current_item:item
-					})
-				} else {
-					item.max_rank = -1
-					item.rank = 0
-					this.setState({
-						current_item:item
-					})
-				}
 			})
 	}
 	
@@ -107,8 +76,8 @@ class App extends Component {
       <div className="App">
 				<center>
 					<h3>Select an item</h3>
-					<Form itemNames={this.state.itemNames} getPriceInfo={this.getPriceInfo}/>
-					<PriceInfo item={this.state.current_item} stats={this.state.current_statistics} orders={this.state.current_orders} changeRank={this.changeRank} />
+					<Form loadState={this.state.loadState} items={this.state.items} getPriceInfo={this.getPriceInfo}/>
+					<PriceInfo item={this.state.current_item} changeRank={this.changeRank}/>
 					<p>Made by echo_delta for learning purposes. Source and documentation at <a href="https://github.com/echo-delta/warframe-market-stats">https://github.com/echo-delta/warframe-market-stats</a>.</p>
 				</center>
       </div>
