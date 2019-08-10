@@ -21,9 +21,10 @@ class App extends Component {
 			.then(result => {
 				if (!result.ok) {
 					throw Error(result.statusText)
+				} else {
+					return result.json()
 				}
 			})
-			.then(result => result.json())
 			.then(result => {
 				this.setState({
 					items:result
