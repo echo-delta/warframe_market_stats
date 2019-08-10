@@ -54,7 +54,7 @@ class App extends Component {
 		this.setState({
 			current_item: {item_name : item.label}
 		})
-		var url = 'https://wf-marketstats.herokuapp.com/items' + item.value
+		var url = 'https://wf-marketstats.herokuapp.com/items/' + item.value
 		fetch(url, {
 			headers: {
 				'Content-Type': 'application/json',
