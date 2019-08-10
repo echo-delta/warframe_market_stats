@@ -19,7 +19,6 @@ class App extends Component {
 			}
 		})
 			.then(result => {
-				console.log(result)
 				if (!result.ok) {
 					throw Error(result.statusText)
 				}
