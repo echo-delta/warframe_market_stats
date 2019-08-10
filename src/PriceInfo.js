@@ -49,23 +49,23 @@ const OrderPrice = props => {
 			if (props.item.rank === 0) {
 				return(
 					<div className="prices">
-						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.rank_0.max_buy}</h1></div>
-						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.rank_0.min_sell}</h1></div>
+						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.rank_0.max_buy == -1 ? '-' : props.item.orders.rank_0.max_buy}</h1></div>
+						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.rank_0.min_sell == -1 ? '-' : props.item.orders.rank_0.min_sell}</h1></div>
 					</div>
 				) 
 			} else {
 				return(
 					<div className="prices">
-						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.max_rank.max_buy}</h1></div>
-						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.max_rank.min_sell}</h1></div>
+						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.max_rank.max_buy == -1 ? '-' : props.item.orders.max_rank.max_buy}</h1></div>
+						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.max_rank.min_sell == -1 ? '-' : props.item.orders.max_rank.min_sell}</h1></div>
 					</div>
 				)
 			}
 		} else {
 				return(
 					<div className="prices">
-						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.max_buy}</h1></div>
-						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.min_sell}</h1></div>
+						<div className="orderPrice"><h3>Max offer: </h3><h1 className="price">{props.item.orders.max_buy == -1 ? '-' : props.item.orders.max_buy}</h1></div>
+						<div className="orderPrice"><h3>Min asked: </h3><h1 className="price">{props.item.orders.min_sell == -1 ? '-' : props.item.orders.min_sell}</h1></div>
 					</div>
 				)
 		}
@@ -98,7 +98,7 @@ const StatChart = props => {
 			intervals: { style: 'sticks' },
 			hAxis:{textStyle:{color:'white'}},
 			vAxis:{textStyle:{color:'white'}},
-			legend:{textStyle:{color:'white'}}
+			legend:'none'
 		}
 		return(
 			<Chart

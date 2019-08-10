@@ -65,6 +65,7 @@ class App extends Component {
 			.then(result => {
 				result.item_name = item.label
 				result.rank = 0
+				result.url_name = item.value
 				this.setState({
 					current_item: result
 				})

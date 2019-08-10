@@ -28,7 +28,7 @@ Form {
 }
 
 .marketButton {
-	font-size: 1.5em;
+	font-size: calc(0.5em + 1vw);
 	padding: 2%;
 	width: 100%;
 	line-height:300%;
@@ -39,6 +39,7 @@ Form {
 	color: white;
 	background-color: #737373;
 	border: 0;
+	word-wrap: break-word;
 }
 
 .marketButton:hover {
@@ -137,7 +138,7 @@ td {
 
 .rankButton {
 	display: inline-block;
-	font-size: 1em;
+	font-size: calc(0.3em + 1vw);
 	width: 10%;
 	line-height:300%;
 	text-align: center;
@@ -149,6 +150,10 @@ td {
 	background-color: #737373;
 	border: 0;
 	vertical-align: middle;
+}
+
+.stats h1 {
+	margin-top: 3%;
 }
 
 .rankButton:hover {
