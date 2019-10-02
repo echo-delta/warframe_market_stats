@@ -31,11 +31,11 @@ const AvgPrice = props => {
 				rank_stat = props.item.stats.max_rank
 			}
 			return (
-				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{rank_stat[rank_stat.length-1].avg_price}</h1></div>
+				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{rank_stat[rank_stat.length-1] ? rank_stat[rank_stat.length-1].avg_price : '-'}</h1></div>
 			)
 		} else {
 			return (
-				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{props.item.stats[props.item.stats.length-1].avg_price}</h1></div>
+				<div className="averagePrice"><h3>Average Price: </h3><h1 className="price">{props.item.stats[props.item.stats.length-1]? props.item.stats[props.item.stats.length-1].avg_price : '-'}</h1></div>
 			)
 		}
 	} else {
