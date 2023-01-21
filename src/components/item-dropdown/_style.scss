@@ -27,17 +27,28 @@
   }
 
   .no-data {
+    color: variables.$font-color;
     padding: 10px;
     text-align: center;
   }
 
-  & > .react-dropdown-select-loading {
+  .clear {
+    background: none;
+    border: 0;
+    height: 100%;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .react-dropdown-select-loading {
     &::after {
       border-color: variables.$font-color transparent;
     }
   }
 
-  & > .react-dropdown-select-dropdown {
+  .react-dropdown-select-dropdown {
     background: variables.$popup-color;
     border: 0;
     border-radius: 0 0 10px 10px;
@@ -46,10 +57,7 @@
 
     & > span {
       border: 0;
-    }
-
-    & > .react-dropdown-select-no-data {
-      color: variables.$font-color;
+      padding: 5px 20px;
     }
   }
 }

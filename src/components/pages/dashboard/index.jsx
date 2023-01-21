@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Loader from 'src/components/loader';
 import ItemDropdown from 'src/components/item-dropdown';
 import ItemDetail from 'src/components/item-detail';
+import { ReactComponent as GithubIcon } from 'src/assets/github.svg';
 import styles from 'src/components/pages/dashboard/DashboardPage.module.scss';
 
 const fetchItems = () => fetch(
@@ -35,6 +36,7 @@ const DashboardPage = () => {
   const [isLoadingItemDetail, setIsLoadingItemDetail] = useState(false);
 
   const handleSelectItem = async (item) => {
+    setErrorMessage('');
     setItemDetail({
       item_name: item.label,
       url_name: item.value,
@@ -58,6 +60,9 @@ const DashboardPage = () => {
           }
         }
 			})
+      .catch((e) => {
+        setErrorMessage('Network error');
+      })
       .finally(() => {
         if (isLoadingItems) {
           setIsLoadingItems(false);
@@ -74,14 +79,22 @@ const DashboardPage = () => {
   useEffect(() => {
     if (itemDetail.url_name) {
       fetchItemDetail(itemDetail.url_name)
-        .then((response) => response.clone().json())
-        .then((response) => {
-          if (isLoadingItemDetail) {
-            setItemDetail((prevState) => ({
-              ...prevState,
-              ...response,
-            }));
+        .then(async (response) => {
+          if (!response.ok && isLoadingItemDetail) {
+            setErrorMessage(response.statusText)
+          } else {
+            const processedResponse = await response.clone().json();
+
+            if (isLoadingItemDetail) {
+              setItemDetail((prevState) => ({
+                ...prevState,
+                ...processedResponse,
+              }));
+            }
           }
+        })
+        .catch((e) => {
+          setErrorMessage('Network error');
         })
         .finally(() => {
           if (isLoadingItemDetail) {
@@ -93,16 +106,45 @@ const DashboardPage = () => {
 
   return (
     <div className={styles['dashboard-page']}>
-      <ItemDropdown
-        disabled
-        items={items}
-        loading={isLoadingItems}
-        onChange={handleSelectItem}
-      />
-      <ItemDetail
-        itemDetail={itemDetail}
-        loading={isLoadingItemDetail}
-      />
+      <div className={styles['dashboard-page__content']}>
+        {Object.keys(itemDetail).length === 0
+          && (
+            <span className={styles['dashboard-page__content__header']}>
+              Warframe Market Stats - Summarize the market
+            </span>
+          )}
+        {errorMessage
+          ? (
+            <span className={styles['dashboard-page__content__error']}>
+              {errorMessage}
+            </span>
+          )
+          : (
+            <ItemDropdown
+              disabled
+              items={items}
+              loading={isLoadingItems}
+              onChange={handleSelectItem}
+            />
+          )}
+        <ItemDetail
+          itemDetail={itemDetail}
+          loading={isLoadingItemDetail}
+        />
+      </div>
+      <footer>
+        <button
+          onClick={() => {
+            window.open(
+              'https://github.com/edwin-tandiono/warframe-market-stats',
+              '_blank',
+            );
+          }}
+          type="button"
+        >
+          <GithubIcon />
+        </button>
+      </footer>
     </div>
   );
 };

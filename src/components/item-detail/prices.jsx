@@ -25,7 +25,7 @@ const Prices = (props) => {
   }
 
   const getMaxBuy = () => {
-    if (itemDetail.max_mod_rank === -1) {
+    if (itemDetail.mod_max_rank === -1) {
       return itemDetail.orders.max_buy  === -1 ? '-' : itemDetail.orders.max_buy ;
     }
 
@@ -38,7 +38,7 @@ const Prices = (props) => {
     <div className="item-detail__prices">
       <div className="item-detail__prices__price item-detail__prices__price--average">
         <div>Average Price</div>
-        <div>{getAverage()}</div>
+        <div>{Math.ceil(getAverage())}</div>
       </div>
       <div className="item-detail__prices__price item-detail__prices__price--min">
         <div>Min Demand</div>
