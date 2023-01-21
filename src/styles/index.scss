@@ -1,0 +1,26 @@
+@use 'src/styles/variables';
+
+@use 'src/components/loader/style' as *;
+@use 'src/components/item-dropdown/style' as *;
+@use 'src/components/item-detail/style' as *;
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/roboto/Roboto-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  background-color: variables.$background-color;
+  color: variables.$font-color;
+  font-family: 'Roboto', arial;
+  margin: 0;
+}

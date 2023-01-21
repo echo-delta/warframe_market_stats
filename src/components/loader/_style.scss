@@ -1,0 +1,31 @@
+@use 'src/styles/variables';
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  height: 1.5rem;
+  width: 1.5rem;
+  position: relative;
+
+  &::before {
+    animation: 1.5s linear infinite spinner;
+    animation-play-state: inherit;
+    border: solid 5px variables.$popup-color;
+    border-bottom-color: variables.$font-color;
+    border-radius: 50%;
+    box-sizing: border-box;
+    content: "";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    will-change: transform;
+  }
+}
