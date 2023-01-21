@@ -45,7 +45,7 @@ const Chart = (props) => {
     <GoogleChart
       width="100%"
       height="100%"
-      chartType="LineChart"
+      chartType="AreaChart"
       data={data}
       options={CHART_OPTIONS}
     />
