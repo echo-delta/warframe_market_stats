@@ -9,9 +9,15 @@ const Prices = (props) => {
       return itemDetail.stats[itemDetail.stats.length - 1].avg_price;
     }
 
-    return rank === 0
-      ? itemDetail.stats.rank_0[itemDetail.stats.rank_0.length - 1].avg_price
-      : itemDetail.stats.max_rank[itemDetail.stats.max_rank.length - 1].avg_price;
+    const stats = rank === 0
+      ? itemDetail.stats.rank_0
+      : itemDetail.stats.max_rank;
+    
+    if (stats.length === 0) {
+      return '-';
+    }
+
+    return Math.ceil(stats[stats.length - 1].avg_price);
   }
 
   const getMinSell = () => {
@@ -38,7 +44,7 @@ const Prices = (props) => {
     <div className="item-detail__prices">
       <div className="item-detail__prices__price item-detail__prices__price--average">
         <div>Average Price</div>
-        <div>{Math.ceil(getAverage())}</div>
+        <div>{getAverage()}</div>
       </div>
       <div className="item-detail__prices__price item-detail__prices__price--min">
         <div>Min Demand</div>
