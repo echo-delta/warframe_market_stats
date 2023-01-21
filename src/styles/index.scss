@@ -1,0 +1,17 @@
+@use 'src/styles/variables';
+
+@use 'src/components/item-dropdown/styles';
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: variables.$background-color;
+  color: variables.$font-color;
+  font-family: 'Roboto', arial;
+  margin: 0;
+}

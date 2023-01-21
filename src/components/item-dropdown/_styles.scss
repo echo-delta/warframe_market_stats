@@ -1,0 +1,54 @@
+@use 'src/styles/variables';
+
+$input-height: 3rem;
+$input-radius: calc($input-height / 2);
+$popup-radius: 10px;
+
+.item-dropdown {
+  background: variables.$input-color;
+  border: none !important;
+  border-radius: $input-radius !important;
+  box-shadow: none !important;
+  min-height: $input-height !important;
+  padding: 0 20px !important;
+
+  input {
+    color: variables.$font-color;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+
+  svg {
+    fill: variables.$font-color;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &--open {
+    border-radius: $input-radius $input-radius 0 0 !important;
+  }
+
+  &--hide-options {
+    & > .react-dropdown-select-dropdown {
+      display: none;
+    }
+  }
+
+  & > .react-dropdown-select-dropdown {
+    background: variables.$popup-color;
+    border: 0;
+    border-radius: 0 0 10px 10px;
+    left: 0;
+    top: calc($input-height);
+
+    & > span {
+      border: 0;
+    }
+
+    & > .react-dropdown-select-no-data {
+      color: variables.$font-color;
+    }
+  }
+}
