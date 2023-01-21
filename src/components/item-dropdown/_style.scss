@@ -1,0 +1,63 @@
+@use 'src/styles/variables';
+
+.item-dropdown {
+  background: variables.$input-color;
+  border: none !important;
+  border-radius: variables.$input-radius !important;
+  box-shadow: none !important;
+  min-height: variables.$input-height !important;
+  padding: 0 20px !important;
+
+  input {
+    color: variables.$font-color;
+    font-family: inherit;
+    font-size: 1rem;
+  }
+
+  svg {
+    fill: variables.$font-color;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &--open {
+    border-radius: variables.$input-radius variables.$input-radius 0 0 !important;
+  }
+
+  .no-data {
+    color: variables.$font-color;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .clear {
+    background: none;
+    border: 0;
+    height: 100%;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  .react-dropdown-select-loading {
+    &::after {
+      border-color: variables.$font-color transparent;
+    }
+  }
+
+  .react-dropdown-select-dropdown {
+    background: variables.$popup-color;
+    border: 0;
+    border-radius: 0 0 10px 10px;
+    left: 0;
+    top: calc(variables.$input-height);
+
+    & > span {
+      border: 0;
+      padding: 5px 20px;
+    }
+  }
+}

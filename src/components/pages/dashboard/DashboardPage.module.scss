@@ -1,0 +1,57 @@
+@use 'src/styles/mixins';
+@use 'src/styles/variables';
+
+
+.dashboard-page {
+  @include mixins.page-container();
+
+  align-items: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  max-width: 960px;
+  min-height: 100vh;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+
+    &__header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    &__error {
+      color: variables.$font-color-negative;
+      margin-top: 20px;
+      text-align: center;
+    }
+  }
+
+  footer {
+    text-align: center;
+
+    button {
+      background: none;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 64px;
+      margin: 0;
+      padding: 0;
+      width: 64px;
+
+      &:hover {
+        background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+      }
+
+      svg {
+        height: 64px;
+        width: 64px;
+      }
+    }
+  }
+}
