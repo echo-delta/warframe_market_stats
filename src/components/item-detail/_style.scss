@@ -85,13 +85,13 @@
 
       &--min {
         & > div:nth-child(2) {
-          color: variables.$font-color-positive;
+          color: variables.$font-color-negative;
         }
       }
 
       &--max {
         & > div:nth-child(2) {
-          color: variables.$font-color-negative;
+          color: variables.$font-color-positive;
         }
       }
     }
