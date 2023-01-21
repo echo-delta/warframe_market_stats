@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
 import { Chart as GoogleChart } from "react-google-charts";
 
-import Loader from 'src/components/loader';
-
 const CHART_OPTIONS = {
   backgroundColor: 'none',
   colors: ['white'],
@@ -42,12 +40,6 @@ const Chart = (props) => {
 
     return result
   }, [itemDetail, rank]);
-
-  const renderLoader = () => (
-    <div className="item-detail__loader-wrapper">
-      <Loader />
-    </div>
-  );
 
   return (
     <GoogleChart

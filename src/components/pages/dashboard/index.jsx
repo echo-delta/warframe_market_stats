@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import Loader from 'src/components/loader';
 import ItemDropdown from 'src/components/item-dropdown';
 import ItemDetail from 'src/components/item-detail';
 import { ReactComponent as GithubIcon } from 'src/assets/github.svg';
@@ -73,6 +72,8 @@ const DashboardPage = () => {
       setIsLoadingItems(false);
       setIsLoadingItemDetail(false);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // On item selected, fetch item details.
@@ -102,6 +103,8 @@ const DashboardPage = () => {
           }
         });
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemDetail.url_name]);
 
   return (

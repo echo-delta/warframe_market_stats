@@ -20,8 +20,8 @@ const Prices = (props) => {
     }
 
     return rank === 0
-      ? itemDetail.orders.rank_0.min_sell == -1 ? '-' : itemDetail.orders.rank_0.min_sell
-      : itemDetail.orders.max_rank.min_sell == -1 ? '-' : itemDetail.orders.max_rank.min_sell
+      ? itemDetail.orders.rank_0.min_sell === -1 ? '-' : itemDetail.orders.rank_0.min_sell
+      : itemDetail.orders.max_rank.min_sell === -1 ? '-' : itemDetail.orders.max_rank.min_sell
   }
 
   const getMaxBuy = () => {
@@ -30,8 +30,8 @@ const Prices = (props) => {
     }
 
     return rank === 0
-      ? itemDetail.orders.rank_0.max_buy  == -1 ? '-' : itemDetail.orders.rank_0.max_buy 
-      : itemDetail.orders.max_rank.max_buy  == -1 ? '-' : itemDetail.orders.max_rank.max_buy 
+      ? itemDetail.orders.rank_0.max_buy  === -1 ? '-' : itemDetail.orders.rank_0.max_buy 
+      : itemDetail.orders.max_rank.max_buy  === -1 ? '-' : itemDetail.orders.max_rank.max_buy 
   }
 
   return (
