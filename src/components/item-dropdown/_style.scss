@@ -40,6 +40,10 @@
     padding: 0;
     position: absolute;
     width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .react-dropdown-select-loading {
