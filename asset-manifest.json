@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/warframe-market-stats/static/css/main.a36dba07.css",
-    "main.js": "/warframe-market-stats/static/js/main.2b724202.js",
+    "main.js": "/warframe-market-stats/static/js/main.f749eace.js",
     "static/media/Roboto-Regular.ttf": "/warframe-market-stats/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
     "static/media/Roboto-Bold.ttf": "/warframe-market-stats/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
     "static/media/github.svg": "/warframe-market-stats/static/media/github.31710e5cc6415eec86a9439cb6a44b20.svg",
     "index.html": "/warframe-market-stats/index.html",
     "static/media/exit.svg": "/warframe-market-stats/static/media/exit.f31c2b56d673f9e1c8957083adba64b5.svg",
     "main.a36dba07.css.map": "/warframe-market-stats/static/css/main.a36dba07.css.map",
-    "main.2b724202.js.map": "/warframe-market-stats/static/js/main.2b724202.js.map"
+    "main.f749eace.js.map": "/warframe-market-stats/static/js/main.f749eace.js.map"
   },
   "entrypoints": [
     "static/css/main.a36dba07.css",
-    "static/js/main.2b724202.js"
+    "static/js/main.f749eace.js"
   ]
 }
