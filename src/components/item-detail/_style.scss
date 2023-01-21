@@ -1,0 +1,128 @@
+@use 'src/styles/variables';
+
+.item-detail {
+  border-top: 1px solid variables.$popup-color;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 20px;
+  padding-top: 20px;
+  width: 100%;
+
+  &__loader-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
+  &__name {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    min-height: variables.$input-height;
+    width: 100%;
+
+    span {
+      font-size: 1.2rem;
+    }
+
+    button {
+      background: variables.$popup-color;
+      border: 0;
+      border-radius: variables.$input-radius;
+      color: variables.$font-color;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-size: 1rem;
+      height: variables.$input-height;
+      margin-left: 20px;
+      padding: 10px 30px;
+
+      &:hover {
+        background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+      }
+    }
+  }
+
+  &__prices {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    &__price {
+      background-color: variables.$input-color;
+      border-radius: 10px;
+      box-sizing: border-box;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      text-align: center;
+      width: 32%;
+
+      // Label
+      & > div:nth-child(1) {
+        margin-bottom: 5px;
+      }
+
+      // Value
+      & > div:nth-child(2) {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      &--average {
+        & > div:nth-child(2) {
+          color: variables.$font-color-neutral;
+        }
+      }
+
+      &--min {
+        & > div:nth-child(2) {
+          color: variables.$font-color-positive;
+        }
+      }
+
+      &--max {
+        & > div:nth-child(2) {
+          color: variables.$font-color-negative;
+        }
+      }
+    }
+  }
+
+  &__check-market-button {
+    align-items: center;
+    background: variables.$popup-color;
+    border: 0;
+    border-radius: variables.$input-radius;
+    color: variables.$font-color;
+    cursor: pointer;
+    display: flex;
+    font-size: 1rem;
+    height: variables.$input-height;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px 30px;
+
+    &:hover {
+      background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+    }
+
+    svg {
+      height: 1rem;
+      margin-left: 10px;
+      width: 1rem;
+
+      path {
+        stroke: variables.$font-color;
+      }
+    }
+  }
+}

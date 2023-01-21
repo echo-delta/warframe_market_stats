@@ -1,15 +1,11 @@
 @use 'src/styles/variables';
 
-$input-height: 3rem;
-$input-radius: calc($input-height / 2);
-$popup-radius: 10px;
-
 .item-dropdown {
   background: variables.$input-color;
   border: none !important;
-  border-radius: $input-radius !important;
+  border-radius: variables.$input-radius !important;
   box-shadow: none !important;
-  min-height: $input-height !important;
+  min-height: variables.$input-height !important;
   padding: 0 20px !important;
 
   input {
@@ -27,12 +23,17 @@ $popup-radius: 10px;
   }
 
   &--open {
-    border-radius: $input-radius $input-radius 0 0 !important;
+    border-radius: variables.$input-radius variables.$input-radius 0 0 !important;
   }
 
-  &--hide-options {
-    & > .react-dropdown-select-dropdown {
-      display: none;
+  .no-data {
+    padding: 10px;
+    text-align: center;
+  }
+
+  & > .react-dropdown-select-loading {
+    &::after {
+      border-color: variables.$font-color transparent;
     }
   }
 
@@ -41,7 +42,7 @@ $popup-radius: 10px;
     border: 0;
     border-radius: 0 0 10px 10px;
     left: 0;
-    top: calc($input-height);
+    top: calc(variables.$input-height);
 
     & > span {
       border: 0;

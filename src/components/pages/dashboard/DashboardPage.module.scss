@@ -3,6 +3,10 @@
 .dashboard-page {
   @include mixins.page-container();
 
+  align-items: stretch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   max-width: 960px;
   min-height: 100vh;
 }
