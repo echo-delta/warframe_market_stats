@@ -6,7 +6,9 @@ const Prices = (props) => {
 
   const getAverage = () => {
     if (itemDetail.mod_max_rank === -1) {
-      return itemDetail.stats[itemDetail.stats.length - 1].avg_price;
+      return Math.ceil(
+        itemDetail.stats[itemDetail.stats.length - 1].avg_price
+      );
     }
 
     const stats = rank === 0
